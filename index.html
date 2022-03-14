@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Nur Hafidz - REST client</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script type="text/javascript">
+
+        async function postData(url = '', data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        async function getData(url = '') {
+            const response = await fetch(url, {
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        async function UpdateData(url = '', data = {}) {
+            const response = await fetch(url, {
+                method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        async function DeleteData(url = '') {
+            const response = await fetch(url, {
+                method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        async function UpdateHTML(url = '') {
+            const response = await fetch(url, {
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        //================================================================================================================
+
+        function PostAPI() {
+            let params = {
+                "Id": 1,
+                "PickUpPoint": "Singapore",
+                "Destination": "Malaysia",
+                "Current_Location_Latitude": 123,
+                "Current_Location_Longitude": 321
+            }
+            postData('http://localhost:5205/api/Bookings', params)
+                .then(data => {
+                    console.log(data);
+                    let result = "Booking Created: \n" + JSON.stringify(params);
+                    alert(result);
+                });
+        }
+        function GetAPI() {
+            getData('http://localhost:5205/api/Bookings')
+                .then(data => {
+                    console.log(data);
+                    alert(JSON.stringify(data));
+                });
+
+        }
+        function UpdateAPI() {
+            let url = "http://localhost:5205/api/Bookings/1"
+            let params = {
+                "Id": 1,
+                "PickUpPoint": "Malaysia",
+                "Destination": "Singapore",
+                "Current_Location_Latitude": 123,
+                "Current_Location_Longitude": 321
+            }
+            UpdateData(url, params)
+                .then(data => {
+                    console.log(data);
+                    alert(JSON.stringify(data));
+                });
+
+        }
+        function DeleteAPI() {
+            let url = "http://localhost:5205/api/Bookings/1"
+            DeleteData(url)
+                .then(data => {
+                    console.log(data);
+                    alert(JSON.stringify(data));
+                });
+        }
+        function GetByIdAPI() {
+            let url = "http://localhost:5205/api/Bookings/1"
+            getData(url)
+                .then(data => {
+                    console.log(data);
+                    alert(JSON.stringify(data));
+                });
+        }
+
+        function UpdateTable() {
+            let url = "https://jsonplaceholder.typicode.com/users"
+            UpdateHTML(url)
+                .then(data => {
+                    console.log(data);
+                    alert(JSON.stringify(data));
+
+                    var dt = dynamicTable.config('data-table', //id of the table
+                        ['#id', 'name', 'username', 'email'], //field names
+                        ['header 1', 'header 2', 'header 3', 'header 4'], //set to null for field names to be used as header names instead of custom headers
+                        'There are no items to list...'); //default text for no items
+
+                    dt.load(data, true);
+
+                });
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h3>retrieve all the bookings information from the API created in task 2</h3>
+        <p>create booking</p>
+        <button onclick="PostAPI()">Post API</button>
+        <p>get all booking</p>
+        <button onclick="GetAPI()">Get API</button>
+        <p>get booking by Id</p>
+        <button onclick="GetByIdAPI()">Get by Id API</button>
+        <p>update</p>
+        <button onclick="UpdateAPI()">Update API</button>
+        <p>delete booking</p>
+        <button onclick="DeleteAPI()">Delete API</button>
+        <h3>update HTML table</h3>
+        <button onclick="UpdateTable()">update</button>
+    </div>
+
+
+
+
+
+    <div class="container">
+        <table class="table" id="data-table">
+            <thead>
+                <tr>
+                    <th scope="col">#id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">username</th>
+                    <th scope="col">email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
