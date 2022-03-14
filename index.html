@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Nur Hafidz - REST client</title>
+    <title>Muhammad Nur Hafidz - REST Client</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <script type="text/javascript">
@@ -158,12 +158,29 @@
                     console.log(data);
                     alert(JSON.stringify(data));
 
-                    var dt = dynamicTable.config('data-table', //id of the table
-                        ['#id', 'name', 'username', 'email'], //field names
-                        ['header 1', 'header 2', 'header 3', 'header 4'], //set to null for field names to be used as header names instead of custom headers
-                        'There are no items to list...'); //default text for no items
+                    //var table = document.getElementById("myTable");
+                    //var row = table.insertRow(0);
+                    //var cell1 = row.insertCell(0);
+                    //var cell2 = row.insertCell(1);
+                    //cell1.innerHTML = "NEW CELL1";
+                    //cell2.innerHTML = "NEW CELL2";
 
-                    dt.load(data, true);
+                    for (let a = 0; a < data.length; a++) {
+                        var tb = document.getElementById("data-table");
+
+                        var row = tb.insertRow(a + 1);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        var cell4 = row.insertCell(3);
+                        var cell5 = row.insertCell(4);
+
+                        cell1.innerHTML = a + 1;
+                        cell2.innerHTML = data[a].name;
+                        cell3.innerHTML = data[a].username;
+                        cell4.innerHTML = data[a].email;
+                        cell5.innerHTML = data[a].website;
+                    }
 
                 });
         }
@@ -194,37 +211,34 @@
 
 
     <div class="container">
-        <table class="table table-striped table-dark" id="local">
+        <table class="table" id="data-table">
             <thead>
                 <tr>
                     <th scope="col">#id</th>
                     <th scope="col">name</th>
                     <th scope="col">username</th>
                     <th scope="col">email</th>
-                    <th scope="col">Website</th>
+                    <th scope="col">website</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <!--<tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
-                    <td>Google.com</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td>Jacob</td>
                     <td>Thornton</td>
                     <td>@fat</td>
-                    <td>Google.com</td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td>Larry</td>
                     <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>Google.com</td>
+                    <td>@twitter</td>-->
                 </tr>
             </tbody>
         </table>
